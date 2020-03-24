@@ -2,7 +2,7 @@
 
 >
 
-[![NPM](https://img.shields.io/npm/v/:pbc-jspdf-react/:latest?registry_uri=https://npm.pkg.github.com/)](https://npm.pkg.github.com/@pres1av/jspdf-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/:@pres1av/pbc-jspdf-react/:latest?registry_uri=https://npm.pkg.github.com/)](https://npm.pkg.github.com/@pres1av/jspdf-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -13,7 +13,8 @@ npm install --save @pres1av/pbc-jspdf-react
 
 ## ⚠️Note: Use CSS-in-JS, Styled-Component or emotion.
 
-This is a fork of [https://github.com/apipemc/jspdf-react](apipemc/jspdf-react) that adds custom font functionality
+This is a fork of [https://github.com/apipemc/jspdf-react](apipemc/jspdf-react) that adds custom font functionality.
+
 If you want to convert an html in pdf, I recommend using the library.
 [https://github.com/eKoopmans/html2pdf.js](https://github.com/eKoopmans/html2pdf.js)
 
