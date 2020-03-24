@@ -7,11 +7,12 @@ const Html = (props) => {
     x,
     y,
     sourceById,
+    importHtml
   } = props
   return (
     <Consumer>
       {(context) => {
-        const html = document.getElementById(sourceById)
+        const html = sourceById ? document.getElementById(sourceById) : importHtml
         context.doc.fromHTML(html.innerHTML, x, y)
         return context.addProperty(context.doc)
       }}
