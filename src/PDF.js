@@ -3,7 +3,8 @@ import 'jspdf-autotable'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export const { Provider, Consumer } = React.createContext()
+export const PDFContext = React.createContext()
+export const { Provider, Consumer } = PDFContext;
 
 class PDF extends Component {
   static propTypes = {
