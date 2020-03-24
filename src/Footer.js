@@ -4,13 +4,14 @@ import { PDFContext } from './PDF'
 
 const Footer = (props) => {
   const context = useContext(PDFContext);
-  const { x, y, children } = props;
+  const { children, skipFirst = false } = props;
   const { doc } = context;
   const totalPages  = doc.internal.getNumberOfPages();
 
   return (
     <>
       {[...Array(totalPages).keys()].map(page => {
+        if (skipFirst && page === 0) return;
         doc.setPage(page);
         return children;
       })}
