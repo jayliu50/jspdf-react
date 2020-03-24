@@ -17,6 +17,7 @@ const Html = (props) => {
     <Consumer>
       {(context) => {
         const html = sourceById ? document.getElementById(sourceById) : importHtml
+        console.log(context.doc.getFontList());
         context.doc.setFont(fontName)
         context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
         return context.addProperty(context.doc)
