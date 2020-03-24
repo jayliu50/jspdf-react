@@ -10,13 +10,17 @@ const NewHtml = (props) => {
   } = props
   return (
     <Consumer>
-      {(context) => {
+      {async (context) => {
+        let pdf;
         context.doc.setFont(fontName);
-        context.doc.html(html, {callback: function(doc) {
-          doc = tweak(doc);
-          context.addProperty(doc);
+        await context.doc.html(html, {callback: function(doc) {
+          if (tweak) {
+            pdf = tweak(doc);
+          } else {
+            pdf = doc;
+          }
         }});
-        // return context.addProperty(context.doc)
+        return context.addProperty(context.doc)
       }}
     </Consumer>
   )

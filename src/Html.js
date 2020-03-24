@@ -10,12 +10,14 @@ const Html = (props) => {
     importHtml,
     settings = null,
     callback = null,
-    margins = null
+    margins = null,
+    fontName
   } = props
   return (
     <Consumer>
       {(context) => {
         const html = sourceById ? document.getElementById(sourceById) : importHtml
+        context.doc.setFont(fontName)
         context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
         return context.addProperty(context.doc)
       }}
