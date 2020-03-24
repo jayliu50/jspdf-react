@@ -19,6 +19,7 @@ class PDF extends Component {
     autoPrint: PropTypes.bool,
     children: PropTypes.node,
     language: PropTypes.string,
+    customFonts: PropTypes.array,
     properties: PropTypes.shape({}),
     preferences: PropTypes.shape({
       HideToolbar: PropTypes.bool,
@@ -48,6 +49,7 @@ class PDF extends Component {
     previewWidth: 600,
     previewHeight: 900,
     language: 'en-US',
+    customFonts: [],
     properties: {},
     preferences: {
       HideToolbar: false,
@@ -126,6 +128,7 @@ class PDF extends Component {
       children,
       autoPrint,
       language,
+      customFonts,
       properties,
       preferences
     } = this.props
@@ -144,6 +147,16 @@ class PDF extends Component {
     doc.setProperties(properties)
     doc.setLanguage(language)
     doc.viewerPreferences(preferences, true)
+
+    if (customFonts.length > 0) {
+      customFonts.forEach(font => {
+        const { name = '', weight = '', code = '' } = font;
+        const filename = `${name}-${weight}.ttf`;
+
+        doc.addFileToVFS(filename, code);
+        doc.addFont(filename, name, weight);
+      });
+    }
 
     if (!loading) {
       return null

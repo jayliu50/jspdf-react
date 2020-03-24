@@ -1,10 +1,13 @@
 {
-  "name": "jspdf-react",
-  "version": "1.0.10",
+  "name": "pbc-jspdf-react",
+  "version": "1.0.0",
   "description": "Wrapper jsPDF for React",
-  "author": "apipemc",
+  "author": "pres1av",
   "license": "MIT",
-  "repository": "apipemc/jspdf-react",
+  "repository": "pres1av/pbc-jspdf-react",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "keywords": [
     "react",
     "jspdf",
@@ -23,8 +26,8 @@
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
