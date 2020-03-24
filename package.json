@@ -1,6 +1,6 @@
 {
   "name": "@pres1av/pbc-jspdf-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Wrapper jsPDF for React",
   "author": "pres1av",
   "license": "MIT",

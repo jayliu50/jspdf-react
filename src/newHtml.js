@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Consumer } from './PDF'
 
-const newtml = (props) => {
+const NewHtml = (props) => {
   const {
     html,
     callback,
@@ -19,4 +19,4 @@ const newtml = (props) => {
   )
 }
 
-export default newHtml
+export default NewHtml
