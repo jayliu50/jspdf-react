@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import { PDFContext, Consumer } from './PDF'
+import { PDFContext } from './PDF'
 
 const Html = (props) => {
   const context = useContext(PDFContext);

@@ -140,6 +140,7 @@ class PDF extends Component {
     const content = (
       <Provider value={{
         doc: doc,
+        setState: this.setState,
         addProperty: this.addProperty
       }}>
         {children}
