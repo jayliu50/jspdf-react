@@ -5,15 +5,18 @@ import { Consumer } from './PDF'
 const NewHtml = (props) => {
   const {
     html,
-    callback,
+    tweak,
     fontName
   } = props
   return (
     <Consumer>
       {(context) => {
         context.doc.setFont(fontName);
-        context.doc.html(html, {callback});
-        return context.addProperty(context.doc)
+        context.doc.html(html, {callback: function(doc) {
+          doc = tweak(doc);
+          context.addProperty(doc);
+        }});
+        // return context.addProperty(context.doc)
       }}
     </Consumer>
   )
