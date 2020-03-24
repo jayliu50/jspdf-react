@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { Consumer } from './PDF'
+import { PDFContext, Consumer } from './PDF'
 
 const Html = (props) => {
+  const context = useContext(PDFContext);
   const {
     x,
     y,
@@ -11,19 +12,14 @@ const Html = (props) => {
     settings = null,
     callback = null,
     margins = null,
-    fontName
+    fontName = 'helvetica'
   } = props
-  return (
-    <Consumer>
-      {(context) => {
-        const html = sourceById ? document.getElementById(sourceById) : importHtml
-        console.log(context.doc.getFontList());
-        context.doc.setFont(fontName)
-        context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
-        return context.addProperty(context.doc)
-      }}
-    </Consumer>
-  )
+
+  const html = sourceById ? document.getElementById(sourceById) : importHtml
+  context.doc.setFont(fontName)
+  context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
+
+  return context.addProperty(context.doc)
 }
 
 export default Html
