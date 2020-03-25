@@ -123,6 +123,10 @@ class PDF extends Component {
     )
   }
 
+  addPropertyFooter = property => {
+    this.setState({doc: property})
+  }
+
   render() {
     const {
       save,
@@ -145,7 +149,7 @@ class PDF extends Component {
       <Provider value={{
         doc,
         footerControl,
-        setState: this.setState,
+        addPropertyFooter: this.addPropertyFooter,
         addProperty: this.addProperty
       }}>
         {children}

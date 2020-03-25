@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, Fragment } from 'react'
 
 import { PDFContext } from './PDF'
 
@@ -6,7 +6,7 @@ const FooterSingle = ({page, children}) => {
   const context = useContext(PDFContext);
   context.doc.setPage(page);
   return (
-    <PDFContext.Provider value={{doc: context.doc, addProperty: property => context.setState({doc: property, footerControl: context.footerControl})}}>
+    <PDFContext.Provider value={{doc: context.doc, addProperty: context.addPropertyFooter}}>
       {children.map(child => child)}
     </PDFContext.Provider>
   )
@@ -21,7 +21,7 @@ const Footer = (props) => {
   return (
     <>
       {[...Array(totalPages).keys()].map(page => {
-        if (skipFirst && page === 0) return <></>;
+        if (skipFirst && page === 0) return <Fragment key={page} />
         return <FooterSingle key={page} page={page + 1}>{children}</FooterSingle>
       })}
       {() => {context.addProperty(doc)}}
