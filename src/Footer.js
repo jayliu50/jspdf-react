@@ -24,10 +24,7 @@ const Footer = (props) => {
         if (skipFirst && page === 0) return <Fragment key={page} />
         return <FooterSingle key={page} page={page + 1}>{children}</FooterSingle>
       })}
-      {() => {
-        context.addProperty(doc)
-        return <></>
-      }}
+      {() => context.addProperty(doc)}
     </>
   )
 }
