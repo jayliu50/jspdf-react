@@ -85,6 +85,7 @@ class PDF extends Component {
     })
     this.state = {
       callChildren: 0,
+      footerControl: 0,
       loading: false,
       doc
     }
@@ -107,6 +108,9 @@ class PDF extends Component {
       return true
     }
     if (nextState.callChildren <= this.props.children.length) {
+      return true
+    }
+    if (nextState.footerControl !== this.state.footerControl) {
       return true
     }
     return false
@@ -133,13 +137,14 @@ class PDF extends Component {
       properties,
       preferences
     } = this.props
-    const { doc, loading, callChildren } = this.state
+    const { doc, loading, callChildren, footerControl } = this.state
 
     let contentIframe = null
     const isLoad = callChildren === children.length
     const content = (
       <Provider value={{
-        doc: doc,
+        doc,
+        footerControl,
         setState: this.setState,
         addProperty: this.addProperty
       }}>
