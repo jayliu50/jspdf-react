@@ -21,7 +21,7 @@ const Html = (props) => {
   context.doc.setFontStyle(fontStyle)
   context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
   context.addProperty(context.doc)
-
+  console.log(context);
   return <></>
 }
 
