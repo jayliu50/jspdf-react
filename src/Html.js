@@ -11,17 +11,13 @@ const Html = (props) => {
     importHtml,
     settings = null,
     callback = null,
-    margins = null,
-    fontName = 'helvetica',
-    fontStyle = 'normal'
+    margins = null
   } = props
 
   const html = sourceById ? document.getElementById(sourceById) : importHtml
-  context.doc.setFont(fontName)
-  context.doc.setFontStyle(fontStyle)
   context.doc.fromHTML(html.innerHTML, x, y, settings, callback, margins)
   context.addProperty(context.doc)
-  console.log(context);
+
   return <></>
 }
 
