@@ -1,16 +1,19 @@
-# jspdf-react
+# pbc-jspdf-react
 
 >
 
-[![NPM](https://img.shields.io/npm/v/jspdf-react.svg)](https://www.npmjs.com/package/jspdf-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/:@pres1av/pbc-jspdf-react/:latest?registry_uri=https://npm.pkg.github.com/)](https://npm.pkg.github.com/@pres1av/jspdf-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save jspdf-react
+npm config set @pres1av:registry https://npm.pkg.github.com/
+npm install --save @pres1av/pbc-jspdf-react
 ```
 
 ## ⚠️Note: Use CSS-in-JS, Styled-Component or emotion.
+
+This is a fork of [https://github.com/apipemc/jspdf-react](apipemc/jspdf-react) that adds custom font functionality.
 
 If you want to convert an html in pdf, I recommend using the library.
 [https://github.com/eKoopmans/html2pdf.js](https://github.com/eKoopmans/html2pdf.js)
@@ -20,7 +23,7 @@ If you want to convert an html in pdf, I recommend using the library.
 ```jsx
 import React, { Component } from 'react'
 
-import PDF, { Text, AddPage, Line, Image, Table, Html } from 'jspdf-react'
+import PDF, { Text, AddPage, Line, Image, Table, Html } from '@pres1av/pbc-jspdf-react'
 
 import OctoCatImage from './OctoCatImage'
 

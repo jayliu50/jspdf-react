@@ -3,7 +3,8 @@ import 'jspdf-autotable'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export const { Provider, Consumer } = React.createContext()
+export const PDFContext = React.createContext()
+export const { Provider, Consumer } = PDFContext;
 
 class PDF extends Component {
   static propTypes = {
@@ -19,6 +20,7 @@ class PDF extends Component {
     autoPrint: PropTypes.bool,
     children: PropTypes.node,
     language: PropTypes.string,
+    customFonts: PropTypes.array,
     properties: PropTypes.shape({}),
     preferences: PropTypes.shape({
       HideToolbar: PropTypes.bool,
@@ -48,6 +50,7 @@ class PDF extends Component {
     previewWidth: 600,
     previewHeight: 900,
     language: 'en-US',
+    customFonts: [],
     properties: {},
     preferences: {
       HideToolbar: false,
@@ -82,6 +85,7 @@ class PDF extends Component {
     })
     this.state = {
       callChildren: 0,
+      footerControl: 0,
       loading: false,
       doc
     }
@@ -106,6 +110,9 @@ class PDF extends Component {
     if (nextState.callChildren <= this.props.children.length) {
       return true
     }
+    if (nextState.footerControl !== this.state.footerControl) {
+      return true
+    }
     return false
   }
 
@@ -114,6 +121,10 @@ class PDF extends Component {
       doc: property,
       callChildren: prevState.callChildren + 1 })
     )
+  }
+
+  addPropertyFooter = property => {
+    this.setState({doc: property})
   }
 
   render() {
@@ -126,16 +137,19 @@ class PDF extends Component {
       children,
       autoPrint,
       language,
+      customFonts,
       properties,
       preferences
     } = this.props
-    const { doc, loading, callChildren } = this.state
+    const { doc, loading, callChildren, footerControl } = this.state
 
     let contentIframe = null
     const isLoad = callChildren === children.length
     const content = (
       <Provider value={{
-        doc: doc,
+        doc,
+        footerControl,
+        addPropertyFooter: this.addPropertyFooter,
         addProperty: this.addProperty
       }}>
         {children}
@@ -144,6 +158,16 @@ class PDF extends Component {
     doc.setProperties(properties)
     doc.setLanguage(language)
     doc.viewerPreferences(preferences, true)
+
+    if (customFonts.length > 0) {
+      customFonts.forEach(font => {
+        const { name = '', weight = '', code = '' } = font;
+        const filename = `${name}-${weight}.ttf`;
+
+        doc.addFileToVFS(filename, code);
+        doc.addFont(filename, name, weight);
+      });
+    }
 
     if (!loading) {
       return null
